@@ -20,8 +20,23 @@ public class Employe implements Serializable, Comparable<Employe>
 	private LocalDate dateArrivee, dateDepart;
 	
 	
-	/* CDI*/
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	//CDD
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart)
+	{
+		this.gestionPersonnel = gestionPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.mail = mail;
+		this.ligue = ligue;
+		this.dateArrivee = LocalDate.now(); //		utilisée pour obtenir la date actuelle à partir de l'horloge système
+															//		dans le fuseau horaire par défaut. 
+		
+		this.dateDepart = dateDepart;
+	}
+	
+	//CDI
+	/*Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart)
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
@@ -33,22 +48,7 @@ public class Employe implements Serializable, Comparable<Employe>
 															//		dans le fuseau horaire par défaut. 
 		this.dateDepart = null;
 
-	}
-	
-	/*CDD*/
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart)
-	{
-		this.gestionPersonnel = gestionPersonnel;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.password = password;
-		this.mail = mail;
-		this.ligue = ligue;
-		this.dateArrivee = LocalDate.now(); //		utilisée pour obtenir la date actuelle à partir de l'horloge système
-															//		dans le fuseau horaire par défaut. 
-		this.dateDepart = dateDepart;
-
-	}
+	}*/
 	
 	/**
 	 * Retourne la date d'arrivée.
@@ -75,9 +75,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param date la nouvelle date de départ. 
 	 */
 	
-	public void setDateDepart(LocalDate dateDepart)
+	public void setDateDepart(String dateDepart)
 	{
-		this.dateDepart = dateDepart;
+		this.dateDepart = LocalDate.parse(dateDepart);
 	}
 	
 	/**
